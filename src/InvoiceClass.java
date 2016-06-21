@@ -5,6 +5,7 @@ public class InvoiceClass {
 	private String item;
 	private String desc;
 	private float price;
+	private float quantity;
 
 	public InvoiceClass() {
 		itemNo = "";
@@ -13,11 +14,12 @@ public class InvoiceClass {
 		price = 0f;
 	}
 
-	public InvoiceClass(String no, String item, String desc, float price) {
+	public InvoiceClass(String no, String item, String desc, float price, float quantity) {
 		this.itemNo = no;
 		this.item = item;
 		this.desc = desc;		
 		this.price = price;
+		this.quantity = quantity;
 	}
 
 	public void setItemNo(String no) {
@@ -51,14 +53,28 @@ public class InvoiceClass {
 	public float getPrice() {
 		return this.price;
 	}
+	
+	public void setQuantity(float quantity) {
+		this.quantity = quantity;
+	}
+
+	public float getQuantity() {
+		return this.quantity;
+	}
 
 	public String getFormattedPrice() {
 		NumberFormat currency = NumberFormat.getCurrencyInstance();
 		return currency.format(this.price);
 	}
+	
+	public static String getFormattedPrice(float price) {
+		NumberFormat currency = NumberFormat.getCurrencyInstance();
+		return currency.format(price);
+	}
 
 	public String getDisplayText() {
-		return (this.itemNo + " | " + this.item + " | " + this.desc + " | " + getFormattedPrice());
+		return (this.itemNo + " | " + String.format("%10s",this.item) + " | " + String.format("%25s",this.desc) + " | " 
+				+ getFormattedPrice()+ " | " + getQuantity());
 	}
 
 }

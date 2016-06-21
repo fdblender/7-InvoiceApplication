@@ -1,4 +1,3 @@
-
 public class InvoiceDatabase {
 	
 	private InvoiceClass[] invoiceDB;
@@ -9,16 +8,18 @@ public class InvoiceDatabase {
 		noItems = 0;		
 	}
 	
-	public void addItem (String no, String item, String desc, float price) {
-		InvoiceClass newitem = new InvoiceClass(no, item, desc, price);
+	public void addItem (String no, String item, String desc, float price, float quantity) {
+		InvoiceClass newitem = new InvoiceClass(no, item, desc, price, quantity);
 		invoiceDB[noItems] = newitem;
 		this.noItems++;		
 	}
 	
 	// get item matching the requested string
 	public InvoiceClass getItem(String item) {
+		System.out.println("No of items in database: "+this.noItems);
 		for (int i=0;i<this.noItems;i++) {
-			if (this.invoiceDB[i].getItem().equals(item)) {				
+			this.invoiceDB[i].getDisplayText();
+			if (this.invoiceDB[i].getItem().toLowerCase().equals(item)) {				
 				return this.invoiceDB[i];
 			}
 		}		
